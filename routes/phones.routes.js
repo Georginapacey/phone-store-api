@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const phones = require('../controllers/phones.controller');
-const secure = require('../middleware/secure.middleware');
+const phones = require('../controllers/phones.controller')
 
 router.get('/', phones.list);
-router.post('/', secure.isAuthenticated, phones.create);
 router.get('/:id', phones.get);
-router.delete('/:id', secure.isAuthenticated, phones.delete);
+router.post('/', phones.create);
+
 
 module.exports = router;
