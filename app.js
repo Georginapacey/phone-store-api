@@ -10,6 +10,7 @@ const cors = require('cors');
 
 require('./config/db.config');
 require('./config/passport.config').setup(passport);
+const corsConfig = require('./config/cors.config');
 
 const phonesRouter = require('./routes/phones.routes');
 const usersRouter = require('./routes/users.routes');
@@ -22,6 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors(corsConfig));
+
 
 app.use(session({
   secret: process.env.COOKIE_SECRET || 'Super Secret',
